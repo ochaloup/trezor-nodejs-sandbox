@@ -1,0 +1,14 @@
+{
+    "name": "connect-example-node",
+    "version": "1.0.0",
+    "description": "Example node app with @trezor/connect",
+    "author": "Satoshilabs s.r.o <info@satoshilabs.com>",
+    "license": "MIT",
+    "scripts": {
+        "start": "ts-node index.ts"
+    },
+    "dependencies": {
+        "@trezor/connect": "9.4.0",
+        "ts-node": "10.9.2"
+    }
+}
