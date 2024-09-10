@@ -36,6 +36,9 @@ async function main() {
     // To disable asking about passphrase use `use_passphrase: false`
     // To inspiration how to manage the 'on events' to cover the passphrase see:
     // https://github.com/decred/decrediton/blob/master/app/actions/TrezorActions.js#L269
+
+    // --- HW WALLET configuration ---
+    // Some configuration is saved on the device and as such has to be confirmed on device
     // const settings = {
     //     // Setup to not ask for any passphrase at all
     //     // use_passphrase: false,
@@ -56,7 +59,7 @@ async function main() {
     }
     console.log(">>> Device features", features);
 
-    // Funny thing about the passphrase we need to use the evening system to enter it
+    // Funny thing about the passphrase we need to use the eventing system to enter it
     // when we set value: '' then it's the same as when `use_passphrase: false` is set
     const somePassPhrase = '';
     TrezorConnect.on(UI_EVENT, async (event) => {
