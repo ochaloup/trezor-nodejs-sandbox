@@ -8,7 +8,8 @@
         "start": "ts-node index.ts"
     },
     "dependencies": {
-        "@trezor/connect": "9.4.0",
-        "ts-node": "10.9.2"
+        "@trezor/connect": "9.4.2",
+        "ts-node": "10.9.2",
+        "@solana/web3.js": "1.95.2"
     }
 }

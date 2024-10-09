@@ -2,6 +2,7 @@
 
 import TrezorConnect, { TRANSPORT_EVENT, DEVICE_EVENT, DEVICE, UI_EVENT, UI, UI_RESPONSE } from '@trezor/connect';
 import { UI_REQUEST, Device } from '@trezor/connect';
+import { PublicKey } from '@solana/web3.js';
 
 /**
  * Please note, that this example needs:
@@ -96,17 +97,19 @@ async function main() {
     // https://github.com/trezor/trezor-suite/blob/develop/docs/packages/connect/methods.md
 
     // // Trezor pubkey format
-    // const pubkey = await TrezorConnect.solanaGetPublicKey({
-    //     path: "m/44'/501'/0'/0'",
-    //     useEmptyPassphrase: true,
-    //     showOnTrezor: false,
-    // });
-    // if (pubkey.success === false) {
-    //     console.error("Pubkey error", pubkey.payload.error);
-    //     process.exit(1);
-    // } else {
-    //     console.log(">>> Solana pubkey", pubkey.payload.publicKey);
-    // }
+    const pubkey = await TrezorConnect.solanaGetPublicKey({
+        path: "m/44'/501'/0'/0'",
+        useEmptyPassphrase: true,
+        showOnTrezor: false,
+    });
+    if (pubkey.success === false) {
+        console.error("Pubkey error", pubkey.payload.error);
+        process.exit(1);
+    } else {
+        console.log(">>> Solana pubkey", pubkey.payload.publicKey);
+        const pubkeyBuffer = Buffer.from(pubkey.payload.publicKey, "hex")
+        console.log(">>> Solana pubkey base58", new PublicKey(pubkeyBuffer).toBase58());
+    }
 
     // Solana pubkey address format
     const address = await TrezorConnect.solanaGetAddress({
